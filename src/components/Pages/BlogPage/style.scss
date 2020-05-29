@@ -1,0 +1,10 @@
+@import '../../../theme-variables.scss';
+
+.blog-page-wrapper {
+  background-color: $white;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

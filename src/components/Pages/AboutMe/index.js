@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../../../logo.svg';
+import logo from '../../../logo.png';
 
 function AboutMe() {
   return (

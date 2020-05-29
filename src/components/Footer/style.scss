@@ -1,11 +1,11 @@
 @import '../../theme-variables.scss';
 
 #footer {
-  background-color: $charcoal;
-  color: $white;
+  background-color: $white;
+  color: $charcoal;
 
   p {
     margin: 0;
-    line-height: 2rem;
+    line-height: 3rem;
   }
 }

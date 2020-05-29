@@ -3,8 +3,8 @@ import './style.scss';
 
 function Footer() {
   return (
-    <div id="footer">
-      <p>Rahim Virani<sup>&copy;</sup></p>
+    <div id="footer" className="col-12">
+      <p>&copy;&nbsp;Rahim Virani</p>
     </div>
   )
 }
