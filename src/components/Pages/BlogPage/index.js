@@ -1,18 +1,17 @@
 import React from 'react';
 import './style.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../../logo.svg';
 
-function AboutMe() {
+function BlogPage() {
   return (
 
-    <div id="about" className="splash-wrapper">
+    <div className="blog-page-wrapper col-4 m-auto">
       <img src={logo} className="App-logo" alt="logo" />
       <p>
-        THIS IS ABOUT ME PAGE!
+        THIS IS BLOG PAGE!
       </p>
     </div>
   )
 }
 
-export default AboutMe;
+export default BlogPage;

@@ -5,15 +5,23 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from './components/Footer';
 import Splash from './components/Pages/Splash';
 import AboutMe from './components/Pages/AboutMe';
+import BlogPage from './components/Pages/BlogPage';
 
 function App() {
   return (
     <Router>
       <div className="App">
-          {/* <Header /> */}
-          <Splash />
-          <AboutMe />
-          <Footer />
+        {/* <Header /> */}
+        <Switch>
+          <Route exact path="/">
+            <Splash />
+            <AboutMe />
+          </Route>
+          <Route exact path="/blogs">
+            <BlogPage />
+          </Route>
+        </Switch>
+        <Footer />
       </div>
     </Router>
   );

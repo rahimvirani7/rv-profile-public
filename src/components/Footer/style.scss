@@ -1,0 +1,11 @@
+@import '../../theme-variables.scss';
+
+#footer {
+  background-color: $charcoal;
+  color: $white;
+
+  p {
+    margin: 0;
+    line-height: 2rem;
+  }
+}
