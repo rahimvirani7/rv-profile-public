@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 // import Header from './components/Header';
 import Footer from './components/Footer';
 import Splash from './components/Pages/Splash';
@@ -8,6 +10,16 @@ import AboutMe from './components/Pages/AboutMe';
 import BlogPage from './components/Pages/BlogPage';
 
 function App() {
+
+  React.useEffect(()=> {
+    AOS.init({
+      duration : 1500,
+      once: true,
+      offset: 100,
+      delay: 100
+    });
+  }, [])
+
   return (
     <Router>
       <div className="App">
