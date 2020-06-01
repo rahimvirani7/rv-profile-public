@@ -4,20 +4,37 @@ import profile from '../../../media/profile.jpg';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
 import { Link } from "react-router-dom";
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
+import Typing from 'react-typing-animation';
 
 function Splash() {
 
   const { scrollYProgress } = useViewportScroll();
   const scale = useTransform(scrollYProgress, [0.2, 0], [0.4, 1]);
 
+  const typing = (
+    <Typing>
+      <code>
+        <Typing.Delay ms={1000} />
+          <span className="text-blue">console</span>
+          <span className="text-white">.</span>
+          <span className="text-yellow">log</span>
+          <span className="text-white">(</span>
+        <Typing.Delay ms={750} />
+          <span className="text-orange">"Welcome to my website"</span>
+          <span className="text-white">);</span>
+      </code>
+    </Typing>
+  );
+
   return (
 
-    <div style={{scale: scrollYProgress}} className="splash-wrapper col-11 m-auto">
+    <div style={{scale: scrollYProgress}} className="splash-wrapper col-11 m-auto p-0">
       <motion.div style={{scale}} className="img-profile col-9 col-xl-3 col-md-4" data-aos="fade-in">
         <img src={profile} alt="profile" />
       </motion.div>
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
+      
+      <p className="typing-text">
+        {typing}
       </p>
       <ul>
         <li>

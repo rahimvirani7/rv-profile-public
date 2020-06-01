@@ -1,0 +1,19 @@
+@import './theme-variables.scss';
+
+.App {
+  background-color: $charcoal;
+  font-size: 1rem;
+}
+
+.text-white {
+  color: $white;
+}
+.text-yellow {
+  color: $lightyellow; 
+}
+.text-orange {
+  color: $darkorange;
+}
+.text-blue {
+  color: $skyblue;
+}
