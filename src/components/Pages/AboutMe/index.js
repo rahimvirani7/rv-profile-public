@@ -1,18 +1,16 @@
 import React from 'react';
 import './style.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import profile from '../../../media/profile.jpg';
+
+const rootClass = 'about-wrapper';
 
 function AboutMe() {
   return (
 
-    <div id="about" className="splash-wrapper" data-aos="fade-in">
-      <div className="img-profile col-3">
-        <img src={profile} alt="profile" />
-      </div>
-      <p>
+    <div id="about" className={`${rootClass} col-11 m-auto p-0`} data-aos="fade-in">
+      <h3>
         THIS IS ABOUT ME PAGE!
-      </p>
+      </h3>
     </div>
   )
 }

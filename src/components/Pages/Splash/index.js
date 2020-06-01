@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 import Typist from 'react-typist';
 
+const rootClass = 'splash-wrapper';
+
 function Splash() {
 
   const { scrollYProgress } = useViewportScroll();
@@ -28,23 +30,36 @@ function Splash() {
 
   return (
 
-    <div style={{scale: scrollYProgress}} className="splash-wrapper col-11 m-auto p-0">
-      <motion.div style={{scale}} className="img-profile col-9 col-xl-3 col-md-4" data-aos="fade-in">
+    <div
+      style={{scale: scrollYProgress}}
+      className={`${rootClass} col-11 m-auto p-0`}
+    >
+      <motion.div
+        style={{scale}}
+        className={`${rootClass}__img-profile col-9 col-xl-3 col-md-4`}
+        data-aos="fade-in"
+      >
         <img src={profile} alt="profile" />
       </motion.div>
       
-      <p className="typing-text">
+      <p className={`${rootClass}__typing-text`}>
         {typing}
       </p>
       <ul>
         <li>
-          <NavLink smooth to="/#about">About Me</NavLink>
+          <NavLink smooth to="/#about">About</NavLink>
+        </li>
+        <li>
+          <Link to="/">Skills</Link>
         </li>
         <li>
           <Link to="/blogs">Blogs</Link>
         </li>
         <li>
-          Link 3
+          <Link to="/">Projects</Link>
+        </li>
+        <li>
+          <Link to="/">Contact</Link>
         </li>
       </ul>
     </div>
