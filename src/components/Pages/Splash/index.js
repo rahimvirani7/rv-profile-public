@@ -4,7 +4,7 @@ import profile from '../../../media/profile.jpg';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
 import { Link } from "react-router-dom";
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
-import Typing from 'react-typing-animation';
+import Typist from 'react-typist';
 
 function Splash() {
 
@@ -12,18 +12,18 @@ function Splash() {
   const scale = useTransform(scrollYProgress, [0.2, 0], [0.4, 1]);
 
   const typing = (
-    <Typing>
+    <Typist>
       <code>
-        <Typing.Delay ms={1000} />
+        <Typist.Delay ms={1000} />
           <span className="text-blue">console</span>
           <span className="text-white">.</span>
           <span className="text-yellow">log</span>
           <span className="text-white">(</span>
-        <Typing.Delay ms={750} />
+        <Typist.Delay ms={750} />
           <span className="text-orange">"Welcome to my website"</span>
           <span className="text-white">);</span>
       </code>
-    </Typing>
+    </Typist>
   );
 
   return (
