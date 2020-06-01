@@ -1,10 +1,5 @@
 @import '../../../theme-variables.scss';
 
-.App-logo {
-  height: 20vmin;
-  pointer-events: none;
-}
-
 .splash-wrapper {
   // border: 1px solid $black;
   min-height: 100vh;
@@ -13,6 +8,14 @@
   align-items: center;
   justify-content: center;
   color: $white;
+
+  .img-profile {
+    
+    img {
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
 }
 
 
