@@ -3,6 +3,7 @@
 .App {
   background-color: $charcoal;
   font-size: 1rem;
+  font-family: 'Roboto', 'Calibri', sans-serif;
 }
 
 .text-white {
@@ -16,4 +17,30 @@
 }
 .text-blue {
   color: $skyblue;
+}
+
+.shine {
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(255,255,255,0.3);
+    -webkit-transition: none;
+      -moz-transition: none;
+            transition: none;
+  }
+  &:hover {
+    text-decoration: none;
+    background: #393939;
+    &:after {
+      width: 100%;
+      background-color: rgba(255,255,255,0);
+      -webkit-transition: all 0.4s ease-in-out;
+         -moz-transition: all 0.4s ease-in-out;
+              transition: all 0.4s ease-in-out;
+    }
+  }
 }

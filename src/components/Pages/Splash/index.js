@@ -8,6 +8,29 @@ import Typist from 'react-typist';
 
 const rootClass = 'splash-wrapper';
 
+const menuItems = [
+  {
+    title: 'About',
+    url: 'about'
+  },
+  {
+    title: 'Skills',
+    url: ''
+  },
+  {
+    title: 'Blogs',
+    url: 'blog'
+  },
+  {
+    title: 'Projects',
+    url: ''
+  },
+  {
+    title: 'Contact',
+    url: ''
+  },
+]
+
 function Splash() {
 
   const { scrollYProgress } = useViewportScroll();
@@ -42,25 +65,17 @@ function Splash() {
         <img src={profile} alt="profile" />
       </motion.div>
       
+      <h2 className="mt-3 mb-0">Rahim Virani</h2>
       <p className={`${rootClass}__typing-text`}>
         {typing}
       </p>
       <ul>
-        <li>
-          <NavLink smooth to="/#about">About</NavLink>
-        </li>
-        <li>
-          <Link to="/">Skills</Link>
-        </li>
-        <li>
-          <Link to="/blogs">Blogs</Link>
-        </li>
-        <li>
-          <Link to="/">Projects</Link>
-        </li>
-        <li>
-          <Link to="/">Contact</Link>
-        </li>
+        {
+          menuItems.map((item, index) =>  
+          <li>
+            <NavLink className="shine" smooth to={`/#${item.url}`}>{item.title}</NavLink>
+          </li>)
+        }
       </ul>
     </div>
   )
