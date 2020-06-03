@@ -1,5 +1,6 @@
 import React from 'react';
 import { StylesProvider, Paper } from '@material-ui/core';
+import ReactHtmlParser from 'react-html-parser';
 import './style.scss';
 
 const rootClass = 'about-wrapper';
@@ -17,8 +18,11 @@ Morbi vestibulum rhoncus diam, a lacinia orci tincidunt quis. Mauris eros mauris
 
 Sed feugiat vestibulum nunc, ut consectetur odio dictum sit amet. Praesent augue risus, tempor non cursus et, blandit non libero. In a nulla quis nulla tempus viverra eu sed velit. Aenean sodales est quis arcu finibus, sit amet facilisis felis dictum. Phasellus dapibus pulvinar risus sed facilisis. Maecenas dapibus luctus efficitur. Vestibulum scelerisque magna sem, a rutrum urna auctor vitae. Sed sem est, aliquam et pulvinar ut, iaculis sit amet felis. Vivamus imperdiet blandit diam vel consequat. Donec auctor pharetra ligula, et semper nisi auctor vel.
 
-In hac habitasse platea dictumst. Nunc vitae tortor nibh. Cras erat ipsum, venenatis feugiat nisl in, porta tempor tortor. Mauris gravida sed metus imperdiet fringilla. Nunc elit erat, feugiat vitae lacus quis, malesuada condimentum ipsum. Cras eu lacus vitae nisi tincidunt porta sed eu justo. Aenean blandit lacus vel sapien mollis bibendum. Sed pretium nisi lacinia efficitur tempus. Vestibulum dapibus maximus pretium. Etiam vel venenatis mauris. Pellentesque vitae condimentum tellus. Sed blandit ex quis ornare sollicitudin. Phasellus non vestibulum mi, ac mattis elit. Nullam volutpat eleifend lacinia.
-
+<pre><code class="language-javascript">
+function Splash() {
+  console.log("hellow world!");
+}
+</code></pre>
 Mauris ultrices est et ornare suscipit. Sed semper nisi leo, ac eleifend erat venenatis lobortis. Nulla sit amet nunc sit amet quam fringilla tincidunt et vitae ipsum. Praesent neque ligula, imperdiet quis velit vitae, lacinia consequat odio. Aliquam tempus suscipit tempus. Ut eu eros nec augue pharetra hendrerit. Sed eleifend elementum purus sed malesuada.
 
 Aliquam pretium, quam in efficitur accumsan, massa velit malesuada risus, vitae euismod felis sem id diam. Mauris eu ligula tempor, gravida urna eu, rutrum metus. In at tincidunt risus. Aenean porta rhoncus augue. Aliquam nunc arcu, tincidunt ut nisl in, laoreet venenatis felis. Pellentesque eget lacus diam. Vestibulum ut laoreet nisl, nec elementum odio. Ut viverra nunc vitae neque sagittis fringilla. Donec luctus, felis in eleifend fringilla, dolor orci consectetur nisi, et elementum nisl tellus a magna. Curabitur vestibulum gravida quam eu euismod. Cras venenatis egestas ante ut lacinia.
@@ -31,7 +35,7 @@ function AboutMe() {
       <StylesProvider injectFirst>
       <Paper className={`${rootClass}__text`} elevation={0}>
         <h2 className="text-center">About Me</h2>
-        <p>{text}</p>
+        <p>{ ReactHtmlParser(text) }</p>
       </Paper></StylesProvider>
     </div>
   )
