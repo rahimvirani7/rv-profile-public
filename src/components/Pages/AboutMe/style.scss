@@ -9,4 +9,12 @@
   justify-content: center;
   color: $white;
 
+  &__text {
+    border-radius: 0;
+    color: $white;
+    background: $charcoal;
+    letter-spacing: 0.5px;
+    font-weight: 300;
+  }
+
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import './style.scss';
 import profile from '../../../media/profile.jpg';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 import Typist from 'react-typist';
 
@@ -66,13 +66,13 @@ function Splash() {
       </motion.div>
       
       <h2 className="mt-3 mb-0">Rahim Virani</h2>
-      <p className={`${rootClass}__typing-text`}>
+      <div className={`${rootClass}__typing-text`}>
         {typing}
-      </p>
+      </div>
       <ul>
         {
           menuItems.map((item, index) =>  
-          <li>
+          <li key={index}>
             <NavLink className="shine" smooth to={`/#${item.url}`}>{item.title}</NavLink>
           </li>)
         }

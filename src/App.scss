@@ -35,6 +35,7 @@
   &:hover {
     text-decoration: none;
     background: #393939;
+    border-bottom: 1px solid $white;
     &:after {
       width: 100%;
       background-color: rgba(255,255,255,0);

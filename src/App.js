@@ -3,6 +3,7 @@ import './App.scss';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import Header from './components/Header';
 import Footer from './components/Footer';
 import Splash from './components/Pages/Splash';
