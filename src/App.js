@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Splash from './components/Pages/Splash';
 import AboutMe from './components/Pages/AboutMe';
 import BlogPage from './components/Pages/BlogPage';
+import BlogSection from './components/Pages/BlogSection';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/">
             <Splash />
             <AboutMe />
+            <BlogSection />
           </Route>
           <Route exact path="/blogs">
             <BlogPage />
