@@ -24,13 +24,13 @@ Mauris ultrices est et ornare suscipit. Sed semper nisi leo, ac eleifend erat ve
 function AboutMe() {
   return (
 
-    <div id="about" className={`${rootClass} col-11 m-auto p-0`} data-aos="fade-in">
+    <section id="about" className={`${rootClass} col-11 mh-auto gutter-0`} data-aos="fade-in">
       <StylesProvider injectFirst>
       <Paper className={`${rootClass}__text`} elevation={0}>
         <h2 className="text-center">About Me</h2>
         <div>{ ReactHtmlParser(text) }</div>
       </Paper></StylesProvider>
-    </div>
+    </section>
   )
 }
 

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import './css/common.scss';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { firebaseApp } from './utils/firebase';
 import 'prismjs/prism';
 import 'prismjs/themes/prism-okaidia.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { firebaseApp } from './utils/firebase';
+import './css/common.scss';
 // import firebase from 'firebase/app';
 // import Header from './components/Header';
 import Footer from './components/Footer';
