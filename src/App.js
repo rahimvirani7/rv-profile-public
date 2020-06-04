@@ -14,6 +14,7 @@ import Splash from './components/Pages/Splash';
 import AboutMe from './components/Pages/AboutMe';
 import BlogPage from './components/Pages/BlogPage';
 import BlogSection from './components/Pages/BlogSection';
+import BlogContent from './components/Pages/BlogContent';
 
 function App() {
 
@@ -74,15 +75,22 @@ function App() {
       <div className="App">
         {/* <Header /> */}
         <Switch>
+          <Route exact path="/blog/:blog_id">
+            <BlogContent
+              data={blogData}
+            />
+          </Route>
+          
+          <Route exact path="/blogs">
+            <BlogPage />
+          </Route>
+          
           <Route exact path="/">
             <Splash />
             <AboutMe />
             <BlogSection
               data={blogData}
               dateFormat = {formatDate} />
-          </Route>
-          <Route exact path="/blogs">
-            <BlogPage />
           </Route>
         </Switch>
         <Footer />

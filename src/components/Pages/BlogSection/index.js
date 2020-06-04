@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './style.scss';
 
 const rootClass = 'blogSection';
@@ -6,6 +7,7 @@ const rootClass = 'blogSection';
 
 function BlogSection(props) {
   const blogData = props.data && props.data;
+  let history = useHistory();
   // console.log(blogData);
 
   return (
@@ -14,10 +16,19 @@ function BlogSection(props) {
       <h2 className="text-center">My Blogs</h2>
       <div className={`${rootClass}__wrapper row`}>
         {
-          blogData.length && blogData.map((blog, index) => (
+          blogData.length && blogData
+          .sort((a,b) => {
+            return new Date(a.dateAdded).getTime() - new Date(b.dateAdded).getTime();
+          }).reverse()
+          .map((blog, index) => (
           index < 3 &&
           <div key={index} className={`${rootClass}__tile col-4`}>
-            <button className={`${rootClass}__tile__infowrap`}>
+            <button
+              onClick={()=>{
+                  history.push('/blog/'+blog.doc_id)
+                }
+              }
+              className={`${rootClass}__tile__infowrap`}>
               <p>{blog.heading}</p>
               <span className="date">{props.dateFormat(blog.dateAdded)}</span>
               <span 
