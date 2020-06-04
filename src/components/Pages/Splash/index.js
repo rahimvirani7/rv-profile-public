@@ -59,7 +59,7 @@ function Splash() {
     >
       <motion.div
         style={{scale}}
-        className={`${rootClass}__img-profile col-9 col-xl-4 col-md-4`}
+        className={`${rootClass}__img-profile col-9 col-xl-4 col-md-6`}
         data-aos="fade-in"
       >
         <img src={profile} alt="profile" />

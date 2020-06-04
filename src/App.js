@@ -74,7 +74,7 @@ function App() {
     <Router>
       <div className="App">
         {/* <Header /> */}
-        <section className="main-body col-9 mh-auto">
+        <section className="main-body col-12 col-xl-9 col-lg-10 col-sm-11 mh-auto">
           <Switch>
             <Route exact path="/blog/:blog_id">
               <BlogContent
