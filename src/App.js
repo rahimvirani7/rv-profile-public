@@ -55,6 +55,20 @@ function App() {
 
   // console.log(blogData && blogData);
 
+
+  // ---Utility functions
+
+  const formatDate = (dateString) => {
+    dateString = new Date (dateString);
+    return new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      day: "2-digit",
+      month: "long",
+      hour: "2-digit",
+      minute: "2-digit"
+    }).format(dateString);
+  }
+
   return (
     <Router>
       <div className="App">
@@ -63,7 +77,9 @@ function App() {
           <Route exact path="/">
             <Splash />
             <AboutMe />
-            <BlogSection data={blogData} />
+            <BlogSection
+              data={blogData}
+              dateFormat = {formatDate} />
           </Route>
           <Route exact path="/blogs">
             <BlogPage />

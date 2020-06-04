@@ -16,12 +16,18 @@ function BlogSection(props) {
         {
           blogData.length && blogData.map((blog, index) => (
           index < 3 &&
-          <div className={`${rootClass}__tile col-4`}>
-            <div className={`${rootClass}__tile__infowrap`}>
+          <div key={index} className={`${rootClass}__tile col-4`}>
+            <button className={`${rootClass}__tile__infowrap`}>
               <p>{blog.heading}</p>
-              <span>{blog.dateAdded}</span>
-              <span>{blog.category}</span>
-            </div>
+              <span className="date">{props.dateFormat(blog.dateAdded)}</span>
+              <span 
+                className={
+                  blog.category.toLowerCase() === 'tech' ? 'cat-tech' :
+                  blog.category.toLowerCase() === 'general' ? 'cat-general' :
+                  'cat-misc'
+                } ></span>
+              <span className="category">{blog.category}</span>
+            </button>
           </div>
           ))
         }
