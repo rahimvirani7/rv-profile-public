@@ -6,7 +6,7 @@ const rootClass = 'blogSection';
 
 function BlogSection(props) {
   const blogData = props.data && props.data;
-  //console.log(blogData)
+  // console.log(blogData);
 
   return (
 
