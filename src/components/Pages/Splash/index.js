@@ -53,13 +53,13 @@ function Splash() {
 
   return (
 
-    <div
+    <section
       style={{scale: scrollYProgress}}
-      className={`${rootClass} col-11 m-auto p-0`}
+      className={`${rootClass} col-12 m-auto gutter-0`}
     >
       <motion.div
         style={{scale}}
-        className={`${rootClass}__img-profile col-9 col-xl-3 col-md-4`}
+        className={`${rootClass}__img-profile col-9 col-xl-4 col-md-4`}
         data-aos="fade-in"
       >
         <img src={profile} alt="profile" />
@@ -77,7 +77,7 @@ function Splash() {
           </li>)
         }
       </ul>
-    </div>
+    </section>
   )
 }
 

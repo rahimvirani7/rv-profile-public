@@ -74,25 +74,28 @@ function App() {
     <Router>
       <div className="App">
         {/* <Header /> */}
-        <Switch>
-          <Route exact path="/blog/:blog_id">
-            <BlogContent
-              data={blogData}
-            />
-          </Route>
-          
-          <Route exact path="/blogs">
-            <BlogPage />
-          </Route>
-          
-          <Route exact path="/">
-            <Splash />
-            <AboutMe />
-            <BlogSection
-              data={blogData}
-              dateFormat = {formatDate} />
-          </Route>
-        </Switch>
+        <section className="main-body col-9 mh-auto">
+          <Switch>
+            <Route exact path="/blog/:blog_id">
+              <BlogContent
+                data={blogData}
+                dateFormat = {formatDate}
+              />
+            </Route>
+            
+            <Route exact path="/blogs">
+              <BlogPage />
+            </Route>
+            
+            <Route exact path="/">
+              <Splash />
+              <AboutMe />
+              <BlogSection
+                data={blogData}
+                dateFormat = {formatDate} />
+            </Route>
+          </Switch>
+        </section>
         <Footer />
       </div>
     </Router>

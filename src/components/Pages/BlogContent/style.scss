@@ -6,4 +6,17 @@
   min-height: 100vh;
   color: $white;
 
+  &__contentWrap {
+    padding: 2rem 0;
+    img {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    span {
+      font-weight: 300;
+      color: $lightgray;
+    }
+  }
+
 }

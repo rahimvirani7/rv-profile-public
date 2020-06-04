@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useParams, useLocation } from "react-router-dom";
+import { NavHashLink as NavLink } from 'react-router-hash-link';
 import './style.scss';
 
 const rootClass = 'blogContent';
@@ -20,10 +21,20 @@ function BlogContent(props) {
 
   return (
 
-    <section id="blog" className={`${rootClass} col-11 mh-auto gutter-0`}>
-      <Link to="/#blog">Go Back</Link>
+    <section id="blog" className={`${rootClass} col-12 mh-auto gutter-0`}>
+      <NavLink to="/#blog">Back to Home</NavLink>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <Link to="/blogs">View all my blogs</Link>
       { blogContent &&
-        <h2 className="text-center">{blogContent.heading}</h2>
+        <div className={`${rootClass}__contentWrap`}>
+          <h2 className="text-center mb-4">{blogContent.heading}</h2>
+          <img src={blogContent.coverImg} alt="cover" />
+          <p>
+            {blogContent.textContent}
+          </p>
+          <br/>
+          <span>Published on {props.dateFormat(blogContent.dateAdded)}</span>
+        </div>
       }
     </section>
   )
