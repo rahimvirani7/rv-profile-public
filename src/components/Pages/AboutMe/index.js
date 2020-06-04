@@ -28,7 +28,7 @@ function AboutMe() {
       <StylesProvider injectFirst>
       <Paper className={`${rootClass}__text`} elevation={0}>
         <h2 className="text-center">About Me</h2>
-        <p>{ ReactHtmlParser(text) }</p>
+        <div>{ ReactHtmlParser(text) }</div>
       </Paper></StylesProvider>
     </div>
   )
