@@ -16,10 +16,10 @@
     background: $charcoal;
     letter-spacing: 0.5px;
     font-weight: 300;
-    white-space: pre-wrap; 
 
     &__body {
       text-align: justify;
+      white-space: pre-line;
     }
   }
 

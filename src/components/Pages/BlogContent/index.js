@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, useParams, useLocation } from "react-router-dom";
 import { NavHashLink as NavLink } from 'react-router-hash-link';
+// import 'prismjs/prism';
+// import 'prismjs/themes/prism-okaidia.css';
+import ReactHtmlParser from 'react-html-parser';
 import './style.scss';
 
 const rootClass = 'blogContent';
@@ -30,7 +33,7 @@ function BlogContent(props) {
           <h2 className="text-center mb-4">{blogContent.heading}</h2>
           <img src={blogContent.coverImg} alt="cover" />
           <p>
-            {blogContent.textContent}
+            {ReactHtmlParser(blogContent.textContent)}
           </p>
           <br/>
           <span>Published on {props.dateFormat(blogContent.dateAdded)}</span>
