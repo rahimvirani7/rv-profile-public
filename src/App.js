@@ -13,10 +13,12 @@ import AboutMe from './components/Pages/AboutMe';
 import BlogPage from './components/Pages/BlogPage';
 import BlogSection from './components/Pages/BlogSection';
 import BlogContent from './components/Pages/BlogContent';
+import Admin from './components/Pages/Admin';
 
 function App() {
 
   const [blogData, setBlogData] = useState({});
+  const [aboutData, setAboutData] = useState({});
 
   React.useEffect(()=> {
     AOS.init({
@@ -34,6 +36,7 @@ function App() {
 
     const fetchData = async () => {
       const blogData = await db.collection('blogs').get();
+      const aboutData = await db.collection('about').get();
 
       setBlogData(blogData.docs.map(record => {
         let data = record.data();
@@ -42,6 +45,15 @@ function App() {
       })
       );
 
+      setAboutData(aboutData.docs.map(item => {
+        let data = item.data();
+        data.doc_id = item.id;
+        return data;
+        })
+        .find(item => {
+          return item.active === true
+        })
+      );
     };
     fetchData();
 
@@ -84,10 +96,16 @@ function App() {
             <Route exact path="/blogs">
               <BlogPage />
             </Route>
+
+            <Route exact path="/secreturl">
+              <Admin
+                aboutData={aboutData} />
+            </Route>
             
             <Route exact path="/">
               <Splash />
-              <AboutMe />
+              <AboutMe
+                data={aboutData} />
               <BlogSection
                 data={blogData}
                 dateFormat = {formatDate} />
