@@ -22,7 +22,7 @@ function BlogSection(props) {
           }).reverse()
           .map((blog, index) => (
           index < 3 &&
-          <div key={index} className={`${rootClass}__tile col-12 col-lg-4`}>
+          <div key={index} className={`${rootClass}__tile mx-auto col-9 col-lg-4`}>
             <button
               onClick={()=>{
                   history.push('/blog/'+blog.doc_id)
