@@ -59,11 +59,17 @@ function Admin(props) {
       { props.aboutData &&
         <form className="col-10 gutter-0" id="admin-form" onSubmit={handleSubmit(onSubmit)}>
 
+          {/* ---about text--- */}
           <div className={`${rootClass}__input-wrap`}>
             <label htmlFor="txt_about">
               About Text:
             </label><br/>
-            <textarea ref={register({ required: true })} onChange={handleAboutTextUpdate} value={aboutText} name="about" id="txt_about" rows="10" />
+            <textarea
+              ref={register({ required: true })}
+              onChange={handleAboutTextUpdate}
+              value={aboutText}
+              name="about" id="txt_about"
+              rows="15" />
             <div className="errors">
               {errors.about && 'About text cannot be blank.'}
             </div>

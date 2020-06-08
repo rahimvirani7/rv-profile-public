@@ -2,12 +2,13 @@
 
 .about-wrapper {
 
-  margin-top: 3rem;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  // min-height: 100vh;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
   color: $white;
 
   &__text {
@@ -20,6 +21,9 @@
     &__body {
       text-align: justify;
       white-space: pre-line;
+      p {
+        padding-top: 1rem;
+      }
     }
   }
 

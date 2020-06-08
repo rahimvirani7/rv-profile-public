@@ -13,7 +13,7 @@ function BlogSection(props) {
   return (
 
     <section id="blog" className={`${rootClass} col-12 mh-auto gutter-0`} data-aos="fade-in">
-      <h2 className="text-center">My Blogs</h2>
+      <h3 className="text-center">My Blogs</h3>
       <div className={`${rootClass}__wrapper row`}>
         {
           blogData.length && blogData

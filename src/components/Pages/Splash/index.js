@@ -15,7 +15,7 @@ const menuItems = [
   },
   {
     title: 'Skills',
-    url: ''
+    url: 'skills'
   },
   {
     title: 'Blogs',

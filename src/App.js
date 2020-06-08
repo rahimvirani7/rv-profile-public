@@ -14,6 +14,7 @@ import BlogPage from './components/Pages/BlogPage';
 import BlogSection from './components/Pages/BlogSection';
 import BlogContent from './components/Pages/BlogContent';
 import Admin from './components/Pages/Admin';
+import Skills from './components/Pages/Skills';
 
 function App() {
 
@@ -106,6 +107,7 @@ function App() {
               <Splash />
               <AboutMe
                 data={aboutData} />
+              <Skills />
               <BlogSection
                 data={blogData}
                 dateFormat = {formatDate} />
