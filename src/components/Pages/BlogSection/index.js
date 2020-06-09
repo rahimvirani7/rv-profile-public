@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import './style.scss';
 
 const rootClass = 'blogSection';
@@ -22,7 +22,7 @@ function BlogSection(props) {
           }).reverse()
           .map((blog, index) => (
           index < 3 &&
-          <div key={index} className={`${rootClass}__tile mx-auto col-9 col-lg-4`}>
+          <div key={index} className={`${rootClass}__tile col-12 col-sm-9 col-lg-4 mx-auto`}>
             <button
               onClick={()=>{
                   history.push('/blog/'+blog.doc_id)
@@ -42,6 +42,13 @@ function BlogSection(props) {
           </div>
           ))
         }
+        <div className="link-wrapper">
+          <span role="img" aria-label="icon">&#128279;</span>&nbsp;
+          <Link className="link" to="/blogs">
+            View all blogs
+          </Link>
+        </div>
+        
       </div>
     </section>
   )

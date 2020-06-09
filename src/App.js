@@ -20,6 +20,7 @@ function App() {
 
   const [blogData, setBlogData] = useState({});
   const [aboutData, setAboutData] = useState({});
+  const [skillData, setSkillData] = useState({});
 
   React.useEffect(()=> {
     AOS.init({
@@ -38,6 +39,7 @@ function App() {
     const fetchData = async () => {
       const blogData = await db.collection('blogs').get();
       const aboutData = await db.collection('about').get();
+      const skillsData = await db.collection('skills').get();
 
       setBlogData(blogData.docs.map(record => {
         let data = record.data();
@@ -54,6 +56,13 @@ function App() {
         .find(item => {
           return item.active === true
         })
+      );
+
+      setSkillData(skillsData.docs.map(skill => {
+        let data = skill.data();
+        //data.doc_id = skill.id;
+        return data;
+      })
       );
     };
     fetchData();
@@ -107,7 +116,8 @@ function App() {
               <Splash />
               <AboutMe
                 data={aboutData} />
-              <Skills />
+              <Skills
+                skills={skillData} />
               <BlogSection
                 data={blogData}
                 dateFormat = {formatDate} />

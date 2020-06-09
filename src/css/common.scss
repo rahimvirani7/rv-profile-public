@@ -34,6 +34,13 @@
   color: $skyblue;
 }
 
+.link {
+  color: $white;
+  &:hover {
+    color: $darkorange;
+  }
+}
+
 .shine {
   &:after {
     content: '';
