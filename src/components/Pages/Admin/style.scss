@@ -6,6 +6,7 @@
   color: $white;
   display: flex;
   flex-direction: column;
+  padding-bottom: 5rem;
 
   h2 {
     margin-top: 3rem;
@@ -31,6 +32,37 @@
 
     &:hover {
       background-color: $darkorange;
+    }
+  }
+
+  &__blogs {
+    margin-top: 3rem;
+
+    h4{
+      margin-bottom: 1rem;
+    }
+
+    &__item {
+      margin: 0.5rem 0;
+
+      button {
+        color: $white;
+        background: transparent;
+        border: 0;
+        display: inline-block;
+        text-decoration: underline;
+        margin: 0 0.5rem;
+        &:hover {
+          color: $darkorange;
+        }
+      }
+
+      .delete {
+        text-decoration: none;
+        &:after {
+          content: '\00274C';
+        }
+      }
     }
   }
 

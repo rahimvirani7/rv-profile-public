@@ -18,6 +18,7 @@ import Skills from './components/Pages/Skills';
 
 function App() {
 
+  const [fetchUpdateFirebase, setFetchUpdateFirebase] = useState(true);
   const [blogData, setBlogData] = useState({});
   const [aboutData, setAboutData] = useState({});
   const [skillData, setSkillData] = useState({});
@@ -72,7 +73,7 @@ function App() {
     //   validateUser(JSON.parse(authInfo));
     // }
 
-  }, []);//[session]
+  }, [fetchUpdateFirebase]);//[session]
 
   // console.log(blogData && blogData);
 
@@ -109,7 +110,11 @@ function App() {
 
             <Route exact path="/secreturl">
               <Admin
-                aboutData={aboutData} />
+                dateFormat={formatDate}
+                blogData = {blogData}
+                aboutData={aboutData}
+                fetch={fetchUpdateFirebase}
+                setFetch = {setFetchUpdateFirebase} />
             </Route>
             
             <Route exact path="/">
