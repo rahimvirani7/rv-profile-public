@@ -1,5 +1,6 @@
 import React from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Card from './Card';
 import './style.scss';
 
 const rootClass = 'blogSection';
@@ -7,7 +8,6 @@ const rootClass = 'blogSection';
 
 function BlogSection(props) {
   const blogData = props.data && props.data;
-  let history = useHistory();
   // console.log(blogData);
 
   return (
@@ -20,26 +20,13 @@ function BlogSection(props) {
           .sort((a,b) => {
             return new Date(a.dateAdded).getTime() - new Date(b.dateAdded).getTime();
           }).reverse()
-          .map((blog, index) => (
+          .map((blogItem, index) => (
           index < 3 &&
-          <div key={index} className={`${rootClass}__tile col-12 col-sm-9 col-lg-4 mx-auto`}>
-            <button
-              onClick={()=>{
-                  history.push('/blog/'+blog.doc_id)
-                }
-              }
-              className={`${rootClass}__tile__infowrap`}>
-              <p>{blog.heading}</p>
-              <span className="date">{props.dateFormat(blog.dateAdded)}</span>
-              <span 
-                className={
-                  blog.category.toLowerCase() === 'tech' ? 'cat-tech' :
-                  blog.category.toLowerCase() === 'general' ? 'cat-general' :
-                  'cat-misc'
-                } ></span>
-              <span className="category">{blog.category}</span>
-            </button>
-          </div>
+            <Card
+              key={index}
+              blog={blogItem}
+              dateFormat={props.dateFormat}
+            />
           ))
         }
         <div className="link-wrapper">

@@ -19,46 +19,48 @@
     }
   }
 
-  &__tile {
-    padding: 0 1rem;
+}
 
-    &__infowrap {
-      text-align: left;
-      margin: 1rem 0;
-      border: 1px solid $darkgray;
-      border-radius: 0.25rem;
-      padding: 1rem;
-      background: $darkgray2;
-      color: $white;
-      width: 100%;
+// ---card component styles
 
-      &:hover, &:focus {
-        box-shadow: 2px 2px 3px $darkgray;
-      }
+.card__tile {
+  padding: 0 1rem;
 
-      p {
-        font-weight: 600;
-        letter-spacing: 0.7px;
-        margin: 0;
-        font-size: 18px;
-      }
-      span.date {
-        font-weight: 300;
-        color: $lightgray;
-        display: block;
-        margin-bottom: 1rem;
-      }
-      span[class*="cat-"] {
-        width: 0.75rem;
-        height: 0.75rem;
-        border-radius: 50%;
-        display: inline-block;
-        margin-right: 0.5rem;
-      }
-      .cat-tech { background-color: $skyblue; }
-      .cat-general { background-color: $lightyellow; }
-      .cat-misc { background-color: $darkorange; }
+  &__infowrap {
+    text-align: left;
+    margin: 1rem 0;
+    border: 1px solid $darkgray;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    background: $darkgray2;
+    color: $white;
+    width: 100%;
+
+    &:hover, &:focus {
+      box-shadow: 2px 2px 3px $darkgray;
     }
-  }
 
+    p {
+      font-weight: 600;
+      letter-spacing: 0.7px;
+      margin: 0;
+      font-size: 18px;
+    }
+    span.date {
+      font-weight: 300;
+      color: $lightgray;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    span[class*="cat-"] {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+    .cat-tech { background-color: $skyblue; }
+    .cat-general { background-color: $lightyellow; }
+    .cat-misc { background-color: $darkorange; }
+  }
 }
