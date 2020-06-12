@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './style.scss';
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 import { firebaseApp } from '../../../utils/firebase';
 
 const rootClass = 'admin';
@@ -12,16 +11,23 @@ function Admin(props) {
     mode: "onBlur"
   });
 
+  const showHideAddBlogForm = () => {
+    setAddNewBlog(!addNewBlog);
+    setSuccessAdded(false);
+  }
+
   const {
     register: register2,
     errors: errors2,
-    handleSubmit: handleSubmit2
+    handleSubmit: handleSubmit2,
+    reset: reset2
   } = useForm({
     mode: "onBlur"
   });
 
   const [aboutText, setAboutText] = useState("");
   const [addNewBlog, setAddNewBlog] = useState(false);
+  const [successAdded, setSuccessAdded] = useState(false);
 
   const db = firebaseApp.firestore();
 
@@ -57,7 +63,18 @@ function Admin(props) {
   };
 
   const addBlog = (data) => {
-    console.log("added", data);
+    let myData = data;
+    myData.dateAdded = new Date().toString();
+
+    db.collection("blogs").add(myData)
+    .then(function(docRef) {
+      reset2();
+      setSuccessAdded(true);
+      props.setFetch(!props.fetch);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
   }
 
   const handleAboutTextUpdate = e => {
@@ -134,11 +151,11 @@ function Admin(props) {
           }
           <div className="link-wrapper col-12 mt-4">
             { !addNewBlog ?
-              <button className="link" onClick={() => setAddNewBlog(!addNewBlog)}>
+              <button className="link" onClick={showHideAddBlogForm}>
                 &#43;&nbsp;Add new blog
               </button>
               :
-              <button className="link" onClick={() => setAddNewBlog(!addNewBlog)}>
+              <button className="link" onClick={showHideAddBlogForm}>
               &#45;&nbsp;Hide add form
               </button>
             }
@@ -161,15 +178,15 @@ function Admin(props) {
               </div>
               
               <div className={`${rootClass}__input-wrap`}>
-                <label htmlFor="txt_blogBody">
+                <label htmlFor="txt_textContent">
                   Blog body:
                 </label><br/>
                 <textarea
                   ref={register2({ required: true })}
-                  name="blogBody" id="txt_blogBody"
+                  name="textContent" id="txt_textContent"
                   rows="20" />
                 <div className="errors">
-                  {errors2.blogBody && 'Blog body text cannot be blank.'}
+                  {errors2.textContent && 'Blog body text cannot be blank.'}
                 </div>
               </div>
 
@@ -188,17 +205,20 @@ function Admin(props) {
               </div>
 
               <div className={`${rootClass}__input-wrap`}>
-                <label htmlFor="txt_imgURL">
+                <label htmlFor="txt_coverImg">
                   Cover Image URL:
                 </label><br/>
                 <input
                   className="col-8"
                   ref={register2}
-                  name="imgURL" id="txt_imgURL"
+                  name="coverImg" id="txt_coverImg"
                   type="text" />
               </div>
 
               <button className={`${rootClass}__submit`}><span>Add!</span></button>
+              { successAdded &&
+                <p className="success pt-2">New blog added!</p>
+              }
             </form>
           }
         </div>

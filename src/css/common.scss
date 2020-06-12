@@ -43,8 +43,12 @@
   }
 }
 
-.error, .errors {
+.errors {
   color: $errorText;
+}
+
+.success {
+  color: $successText;
 }
 
 .shine {

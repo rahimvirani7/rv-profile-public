@@ -31,7 +31,9 @@ function BlogContent(props) {
       { blogContent &&
         <div className={`${rootClass}__contentWrap`}>
           <h2 className="text-center mb-4">{blogContent.heading}</h2>
-          <img src={blogContent.coverImg} alt="cover" />
+          { blogContent.coverImg &&
+            <img src={blogContent.coverImg} alt="cover" />
+          }
           <p>
             {ReactHtmlParser(blogContent.textContent)}
           </p>
