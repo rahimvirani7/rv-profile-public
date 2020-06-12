@@ -15,7 +15,7 @@ function Admin(props) {
 
   // console.log("admin", props.blogData && props.blogData);
 
-  const onSubmit = (data) => {
+  const updateInfo = (data) => {
 
     const firebaseAboutData = db.collection("about").doc(props.aboutData.doc_id);
 
@@ -71,7 +71,7 @@ function Admin(props) {
     <section className={`${rootClass} col-12 mh-auto gutter-0`}>
       <h2>Edit Info</h2>
       { props.aboutData &&
-        <form className="col-12 col-lg-10 gutter-0" id="admin-form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="col-12 col-lg-10 gutter-0" id="admin-form" onSubmit={handleSubmit(updateInfo)}>
 
           {/* ---about text--- */}
           <div className={`${rootClass}__input-wrap`}>
@@ -89,7 +89,7 @@ function Admin(props) {
             </div>
           </div>
 
-          <button className={`${rootClass}__submit`}><span>Submit</span></button>
+          <button className={`${rootClass}__submit`}><span>Update!</span></button>
         </form>
       }
 
@@ -106,7 +106,12 @@ function Admin(props) {
               <div key={index} className={`${rootClass}__blogs__item col-12`}>
                 <span>{index+1}.&nbsp;</span>
                 <span>{blogItem.heading} ({props.dateFormat(blogItem.dateAdded)})</span>
-                <button onClick={(e)=> deleteBlog(e,blogItem.doc_id)} className="delete"></button>
+                <button title="Delete Blog"
+                  onClick={(e)=>
+                    deleteBlog(e,blogItem.doc_id)
+                    }
+                  className="delete">
+                </button>
                 <button className="edit">Edit</button>
               </div>
             ))

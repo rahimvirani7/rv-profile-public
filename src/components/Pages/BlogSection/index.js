@@ -29,7 +29,7 @@ function BlogSection(props) {
             />
           ))
         }
-        <div className="link-wrapper">
+        <div className="link-wrapper col-12">
           <span role="img" aria-label="icon">&#128279;</span>&nbsp;
           <Link className="link" to="/blogs">
             View all blogs
