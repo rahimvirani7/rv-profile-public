@@ -36,9 +36,15 @@
 
 .link {
   color: $white;
+  background-color: transparent;
+  border: 0;
   &:hover {
     color: $darkorange;
   }
+}
+
+.error, .errors {
+  color: $errorText;
 }
 
 .shine {

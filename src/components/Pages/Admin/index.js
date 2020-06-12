@@ -7,10 +7,22 @@ import { firebaseApp } from '../../../utils/firebase';
 const rootClass = 'admin';
 
 function Admin(props) {
-  
-  const [aboutText, setAboutText] = useState("");
 
-  const { register, errors, handleSubmit } = useForm();
+  const { register, errors, handleSubmit } = useForm({
+    mode: "onBlur"
+  });
+
+  const {
+    register: register2,
+    errors: errors2,
+    handleSubmit: handleSubmit2
+  } = useForm({
+    mode: "onBlur"
+  });
+
+  const [aboutText, setAboutText] = useState("");
+  const [addNewBlog, setAddNewBlog] = useState(false);
+
   const db = firebaseApp.firestore();
 
   // console.log("admin", props.blogData && props.blogData);
@@ -44,6 +56,10 @@ function Admin(props) {
     alert("Updated!");
   };
 
+  const addBlog = (data) => {
+    console.log("added", data);
+  }
+
   const handleAboutTextUpdate = e => {
     setAboutText(e.target.value);
   }
@@ -71,7 +87,7 @@ function Admin(props) {
     <section className={`${rootClass} col-12 mh-auto gutter-0`}>
       <h2>Edit Info</h2>
       { props.aboutData &&
-        <form className="col-12 col-lg-10 gutter-0" id="admin-form" onSubmit={handleSubmit(updateInfo)}>
+        <form key={1} className="col-12 col-lg-10 gutter-0" id="admin-form" onSubmit={handleSubmit(updateInfo)}>
 
           {/* ---about text--- */}
           <div className={`${rootClass}__input-wrap`}>
@@ -117,11 +133,74 @@ function Admin(props) {
             ))
           }
           <div className="link-wrapper col-12 mt-4">
-            <span role="img" aria-label="icon">&#128279;</span>&nbsp;
-            <Link className="link" to="/blogs">
-              Add new blog
-            </Link>
+            { !addNewBlog ?
+              <button className="link" onClick={() => setAddNewBlog(!addNewBlog)}>
+                &#43;&nbsp;Add new blog
+              </button>
+              :
+              <button className="link" onClick={() => setAddNewBlog(!addNewBlog)}>
+              &#45;&nbsp;Hide add form
+              </button>
+            }
           </div>
+          { addNewBlog &&
+            <form key={2} className="col-12 col-lg-10" id="blog-form" onSubmit={handleSubmit2(addBlog)}>
+              <br/><h4>New blog</h4>
+              <div className={`${rootClass}__input-wrap`}>
+                <label htmlFor="txt_heading">
+                  Blog Heading:
+                </label><br/>
+                <input
+                  className="col-12"
+                  ref={register2({ required: true })}
+                  name="heading" id="txt_heading"
+                  type="text" />
+                <div className="errors">
+                  {errors2.heading && 'Heading cannot be blank.'}
+                </div>
+              </div>
+              
+              <div className={`${rootClass}__input-wrap`}>
+                <label htmlFor="txt_blogBody">
+                  Blog body:
+                </label><br/>
+                <textarea
+                  ref={register2({ required: true })}
+                  name="blogBody" id="txt_blogBody"
+                  rows="20" />
+                <div className="errors">
+                  {errors2.blogBody && 'Blog body text cannot be blank.'}
+                </div>
+              </div>
+
+              <div className={`${rootClass}__input-wrap`}>
+                <label htmlFor="txt_category">
+                  Category:
+                </label><br/>
+                <input
+                  className="col-8"
+                  ref={register2({ required: true })}
+                  name="category" id="txt_category"
+                  type="text" />
+                <div className="errors">
+                  {errors2.category && 'Category cannot be blank.'}
+                </div>
+              </div>
+
+              <div className={`${rootClass}__input-wrap`}>
+                <label htmlFor="txt_imgURL">
+                  Cover Image URL:
+                </label><br/>
+                <input
+                  className="col-8"
+                  ref={register2}
+                  name="imgURL" id="txt_imgURL"
+                  type="text" />
+              </div>
+
+              <button className={`${rootClass}__submit`}><span>Add!</span></button>
+            </form>
+          }
         </div>
       </div>
     </section>
