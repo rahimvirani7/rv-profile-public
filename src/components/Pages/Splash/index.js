@@ -1,18 +1,16 @@
 import React from 'react';
-import './style.scss';
 import profile from '../../../media/profile.jpg';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
 // import { Link } from "react-router-dom";
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 import Typist from 'react-typist';
+import { IconButton } from '@material-ui/core';
+import { KeyboardArrowDown } from '@material-ui/icons';
+import './style.scss';
 
 const rootClass = 'splash-wrapper';
 
 const menuItems = [
-  {
-    title: 'About',
-    url: 'about'
-  },
   {
     title: 'Skills',
     url: 'skills'
@@ -77,6 +75,11 @@ function Splash() {
           </li>)
         }
       </ul>
+      <NavLink smooth to='/#about'>
+        <IconButton className="down bounce">
+          <KeyboardArrowDown fontSize="large" />
+        </IconButton>
+      </NavLink>
     </section>
   )
 }
