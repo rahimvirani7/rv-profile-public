@@ -5,6 +5,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/common.scss';
+import smoothscroll from 'smoothscroll-polyfill';
 // import firebase from 'firebase/app';
 // import Header from './components/Header';
 import Footer from './components/Footer';
@@ -18,6 +19,7 @@ import Skills from './components/Pages/Skills';
 
 function App() {
 
+  smoothscroll.polyfill();
   const [fetchUpdateFirebase, setFetchUpdateFirebase] = useState(true);
   const [blogData, setBlogData] = useState({});
   const [aboutData, setAboutData] = useState({});
