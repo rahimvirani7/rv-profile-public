@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { firebaseApp } from './utils/firebase';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -16,6 +16,19 @@ import BlogSection from './components/Pages/BlogSection';
 import BlogContent from './components/Pages/BlogContent';
 import Admin from './components/Pages/Admin';
 import Skills from './components/Pages/Skills';
+import LoginPage from './components/Pages/Login';
+
+const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    fakeAuth.isAuthenticated = true;
+    setTimeout(cb, 100); // fake async
+  },
+  signout(cb) {
+    fakeAuth.isAuthenticated = false;
+    setTimeout(cb, 100);
+  }
+};
 
 function App() {
 
@@ -110,14 +123,19 @@ function App() {
               <BlogPage />
             </Route>
 
-            <Route exact path="/secreturl">
+            <Route exact path="/login">
+              <LoginPage fakeAuth={fakeAuth}/>
+            </Route>
+
+            <PrivateRoute exact path="/admin">
               <Admin
                 dateFormat={formatDate}
                 blogData = {blogData}
                 aboutData={aboutData}
                 fetch={fetchUpdateFirebase}
-                setFetch = {setFetchUpdateFirebase} />
-            </Route>
+                setFetch = {setFetchUpdateFirebase}
+                fakeAuth = {fakeAuth} />
+            </PrivateRoute>
             
             <Route exact path="/">
               <Splash />
@@ -134,6 +152,26 @@ function App() {
         <Footer />
       </div>
     </Router>
+  );
+}
+
+function PrivateRoute({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        fakeAuth.isAuthenticated ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
   );
 }
 
