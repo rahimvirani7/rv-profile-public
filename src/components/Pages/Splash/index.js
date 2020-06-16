@@ -25,7 +25,7 @@ const menuItems = [
   },
   {
     title: 'Contact',
-    url: ''
+    url: 'contact'
   },
 ]
 

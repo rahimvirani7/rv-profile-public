@@ -12,7 +12,7 @@ function Skills(props) {
   return (
 
     <section id="skills" className={`${rootClass} col-12 mh-auto gutter-0`} data-aos="fade-in">
-      <h3 className="text-center">Things I know</h3>
+      <h4 className="text-center">Ask me about</h4>
       <div className={`${rootClass}__wrapper row`}>
         {
           skills.length && skills

@@ -17,6 +17,7 @@ import Admin from './components/Pages/Admin';
 import Skills from './components/Pages/Skills';
 import LoginPage from './components/Pages/Login';
 import googleAuthenticate from "./utils/firebase";
+import Contact from './components/Pages/Contact';
 
 
 function App() {
@@ -189,6 +190,7 @@ function App() {
               <BlogSection
                 data={blogData}
                 dateFormat = {formatDate} />
+              <Contact />
             </Route>
           </Switch>
         </section>

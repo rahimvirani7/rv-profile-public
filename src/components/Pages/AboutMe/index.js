@@ -10,7 +10,7 @@ function AboutMe(props) {
     <section id="about" className={`${rootClass} col-12 mh-auto gutter-0`} data-aos="fade-in">
       <StylesProvider injectFirst>
       <Paper className={`${rootClass}__text`} elevation={0}>
-        <h3 className="text-center">About Me</h3>
+        <h4 className="text-center">About me</h4>
         <div className={`${rootClass}__text__body`}>
           <p>
             { props.data && props.data.text }
