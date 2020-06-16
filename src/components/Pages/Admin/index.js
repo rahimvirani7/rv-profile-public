@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import './style.scss';
-import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom'
+import { useForm } from "react-hook-form";
 import { firebaseApp } from '../../../utils/firebase';
 
 const rootClass = 'admin';
 
 function Admin(props) {
-
-  let history = useHistory();
 
   const { register, errors, handleSubmit } = useForm({
     mode: "onBlur"
@@ -106,20 +103,6 @@ function Admin(props) {
 
     <section className={`${rootClass} col-12 mh-auto gutter-0`}>
       <h2>Edit Info</h2>
-      { props.fakeAuth.isAuthenticated ?
-          <p>
-            Welcome!{" "}
-            <button
-              onClick={() => {
-                props.fakeAuth.signout(() => history.push("/"));
-              }}
-            >
-              Sign out
-            </button>
-          </p>
-          :
-          <p>You are not logged in.</p>
-      }
       { props.aboutData &&
         <form key={1} className="col-12 col-lg-10 gutter-0" id="admin-form" onSubmit={handleSubmit(updateInfo)}>
 
