@@ -1,7 +1,7 @@
 import React from 'react';
 import profile from '../../../media/profile.jpg';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 import Typist from 'react-typist';
 import { IconButton } from '@material-ui/core';
@@ -63,6 +63,7 @@ function Splash() {
         <img src={profile} alt="profile" />
       </motion.div>
       
+      <Link to="/admin" className="secret">@</Link>
       <h2 className="mt-3 mb-0">Rahim Virani</h2>
       <div className={`${rootClass}__typing-text`}>
         {typing}

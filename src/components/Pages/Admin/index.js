@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import './style.scss';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
+import { useHistory, Link } from 'react-router-dom'
 import { firebaseApp } from '../../../utils/firebase';
 
 const rootClass = 'admin';
 
 function Admin(props) {
+
+  let history = useHistory();
 
   const { register, errors, handleSubmit } = useForm({
     mode: "onBlur"
@@ -41,7 +44,9 @@ function Admin(props) {
       {
         text : aboutText
       }
-    );
+    ).then(() => {
+      props.setFetch(!props.fetch);
+    });
 
     // let myData = data;
     // myData.values = myData.values.split(/\r?\n/);
@@ -103,6 +108,24 @@ function Admin(props) {
 
     <section className={`${rootClass} col-12 mh-auto gutter-0`}>
       <h2>Edit Info</h2>
+      { props.auth.isAuthenticated ?
+          <div>
+            <p>
+              <Link to="/">Back to Home</Link> |
+              <button
+                onClick={() => {
+                  props.auth.signout(() => history.push("/"));
+                }}
+                className="link"
+              >
+                Sign out
+              </button>
+            </p>
+            <p>Welcome, {props.userName}</p>
+          </div>
+          :
+          <p>You are not logged in.</p>
+      }
       { props.aboutData &&
         <form key={1} className="col-12 col-lg-10 gutter-0" id="admin-form" onSubmit={handleSubmit(updateInfo)}>
 

@@ -43,6 +43,20 @@
   }
 }
 
+.button {
+  margin: 0.5rem;
+  border: 0;
+  padding: 0.5rem 2rem;
+  font-weight: 600;
+  color: $white;
+  background-color: $darkgray;
+  width: 33.3333%;
+
+  &:hover {
+    background-color: $darkorange;
+  }
+}
+
 .errors {
   color: $errorText;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { firebaseApp } from './utils/firebase';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -15,10 +15,14 @@ import BlogSection from './components/Pages/BlogSection';
 import BlogContent from './components/Pages/BlogContent';
 import Admin from './components/Pages/Admin';
 import Skills from './components/Pages/Skills';
+import LoginPage from './components/Pages/Login';
+import googleAuthenticate from "./utils/firebase";
+
 
 function App() {
 
   smoothscroll.polyfill();
+
   const [fetchUpdateFirebase, setFetchUpdateFirebase] = useState(true);
   const [blogData, setBlogData] = useState({});
   const [aboutData, setAboutData] = useState({});
@@ -76,7 +80,57 @@ function App() {
 
   }, [fetchUpdateFirebase]);//[session]
 
-  // console.log(blogData && blogData);
+  // ---Authentication
+
+  const sessionVar = Object.keys(sessionStorage).filter(item => item.indexOf("firebase:authUser") >= 0)[0];
+  const [session, setSession] = useState(sessionVar ? sessionVar : "");
+  const loggedInUserInfo = session && JSON.parse(sessionStorage.getItem(session));
+  const userName = loggedInUserInfo && loggedInUserInfo.displayName;
+  const validEmails = ["rahz616@gmail.com", "rahim.virani09@gmail.com", "noureen612@gmail.com"];
+
+  const googleAuth = {
+    isAuthenticated: session && validEmails.includes(loggedInUserInfo.email) ? true : false,
+    async authenticate(cb) {
+      try {
+        const userRes = await googleAuthenticate();
+        setSession(Object.keys(sessionStorage).filter(item => item.indexOf("firebase:authUser") >= 0)[0]);
+        if (validEmails.includes(userRes.email)) {
+          googleAuth.isAuthenticated = true;
+          setTimeout(cb, 100);
+        }
+      } catch (e) {
+        console.log("Error logging in "+e);
+      }
+    },
+    signout(cb) {
+      if (session) {
+        window.sessionStorage.removeItem(session);
+        googleAuth.isAuthenticated = false;
+        setTimeout(cb, 100);
+        setSession("");
+      }
+    }
+  };
+
+  const PrivateRoute = ({ children, ...rest }) => {
+    return (
+      <Route
+        {...rest}
+        render={({ location }) =>
+          googleAuth.isAuthenticated ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: location }
+              }}
+            />
+          )
+        }
+      />
+    );
+  }
 
 
   // ---Utility functions
@@ -109,21 +163,29 @@ function App() {
               <BlogPage />
             </Route>
 
-            <Route exact path="/secreturl">
-              <Admin
-                dateFormat={formatDate}
-                blogData = {blogData}
-                aboutData={aboutData}
-                fetch={fetchUpdateFirebase}
-                setFetch = {setFetchUpdateFirebase} />
+            <Route exact path="/login">
+              <LoginPage
+                auth = {googleAuth}
+                session = {session}/>
             </Route>
+
+            <PrivateRoute exact path="/admin">
+              <Admin
+                dateFormat = {formatDate}
+                blogData = {blogData}
+                aboutData = {aboutData}
+                fetch = {fetchUpdateFirebase}
+                setFetch = {setFetchUpdateFirebase}
+                auth = {googleAuth}
+                userName = {userName} />
+            </PrivateRoute>
             
             <Route exact path="/">
               <Splash />
               <AboutMe
-                data={aboutData} />
+                data = {aboutData} />
               <Skills
-                skills={skillData} />
+                skills = {skillData} />
               <BlogSection
                 data={blogData}
                 dateFormat = {formatDate} />
