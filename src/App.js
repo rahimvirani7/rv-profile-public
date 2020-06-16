@@ -6,7 +6,6 @@ import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/common.scss';
 import smoothscroll from 'smoothscroll-polyfill';
-// import firebase from 'firebase/app';
 // import Header from './components/Header';
 import Footer from './components/Footer';
 import Splash from './components/Pages/Splash';
