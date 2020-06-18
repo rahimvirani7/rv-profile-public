@@ -6,9 +6,14 @@ import './style.scss';
 const rootClass = 'blogPage'
 
 function BlogPage(props) {
+  
   const blogData = props.data && props.data;
-  return (
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
+  return (
     <section className={`${rootClass} col-12 mh-auto gutter-0`}>
       <h4 className="text-center">All Blogs</h4>
       <div className={`${rootClass}__wrapper row`}>

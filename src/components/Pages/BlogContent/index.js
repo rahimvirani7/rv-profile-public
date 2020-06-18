@@ -20,19 +20,23 @@ function BlogContent(props) {
   let { blog_id } = useParams();
   const blogContent = props.data.length && props.data.filter(item => String(item.doc_id) === blog_id)[0];
 
-  // console.log(blogContent);
-
-  return (
-
-    <section id="blog" className={`${rootClass} col-12 mh-auto gutter-0`}>
-      <div className="link-wrapper col-12 p-0">
+  const links = (
+    <div className="link-wrapper col-12 p-0">
         <span role="img" aria-label="icon">&#8592;</span>&nbsp;
         <NavLink className="link" to="/#blog">
           Back to Home
         </NavLink>
         <span>&nbsp;|&nbsp;</span>
         <Link className="link" to="/blogs">All Blogs</Link>
-      </div>
+    </div>
+  );
+
+  // console.log(blogContent);
+
+  return (
+
+    <section id="blog" className={`${rootClass} col-12 mh-auto gutter-0`}>
+      {links}
       { blogContent &&
         <div className={`${rootClass}__contentWrap`}>
           <h2 className="text-center mb-4">{blogContent.heading}</h2>
@@ -46,6 +50,7 @@ function BlogContent(props) {
           <span>Published on {props.dateFormat(blogContent.dateAdded)}</span>
         </div>
       }
+      {links}
     </section>
   )
 }
