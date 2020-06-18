@@ -10,26 +10,7 @@ import './style.scss';
 
 const rootClass = 'splash-wrapper';
 
-const menuItems = [
-  {
-    title: 'Skills',
-    url: 'skills'
-  },
-  {
-    title: 'Blogs',
-    url: 'blog'
-  },
-  {
-    title: 'Projects',
-    url: ''
-  },
-  {
-    title: 'Contact',
-    url: 'contact'
-  },
-]
-
-function Splash() {
+function Splash(props) {
 
   const { scrollYProgress } = useViewportScroll();
   const scale = useTransform(scrollYProgress, [0.2, 0], [0.4, 1]);
@@ -70,7 +51,7 @@ function Splash() {
       </div>
       <ul>
         {
-          menuItems.map((item, index) =>  
+          props.menuItems.map((item, index) =>  
           <li key={index}>
             <NavLink className="shine" smooth to={`/#${item.url}`}>{item.title}</NavLink>
           </li>)

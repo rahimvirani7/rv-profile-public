@@ -24,6 +24,21 @@ function App() {
 
   smoothscroll.polyfill();
 
+  const menuItems = [
+    {
+      title: 'Skills',
+      url: 'skills'
+    },
+    {
+      title: 'Blogs',
+      url: 'blog'
+    },
+    {
+      title: 'Contact',
+      url: 'contact'
+    },
+  ];
+
   const [fetchUpdateFirebase, setFetchUpdateFirebase] = useState(true);
   const [blogData, setBlogData] = useState({});
   const [aboutData, setAboutData] = useState({});
@@ -161,7 +176,9 @@ function App() {
             </Route>
             
             <Route exact path="/blogs">
-              <BlogPage />
+              <BlogPage
+                data = {blogData}
+                dateFormat = {formatDate} />
             </Route>
 
             <Route exact path="/login">
@@ -182,13 +199,14 @@ function App() {
             </PrivateRoute>
             
             <Route exact path="/">
-              <Splash />
+              <Splash
+               menuItems = {menuItems} />
               <AboutMe
                 data = {aboutData} />
               <Skills
                 skills = {skillData} />
               <BlogSection
-                data={blogData}
+                data = {blogData}
                 dateFormat = {formatDate} />
               <Contact />
             </Route>

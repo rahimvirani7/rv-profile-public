@@ -2,13 +2,10 @@
 
 .blogPage {
 
+  padding-top: 3rem;
   background-color: $charcoal;
   color: $white;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 
   &__logo {
     img {
