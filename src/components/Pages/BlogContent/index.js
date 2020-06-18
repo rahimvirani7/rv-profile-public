@@ -25,9 +25,14 @@ function BlogContent(props) {
   return (
 
     <section id="blog" className={`${rootClass} col-12 mh-auto gutter-0`}>
-      <NavLink to="/#blog">Back to Home</NavLink>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="/blogs">View all my blogs</Link>
+      <div className="link-wrapper col-12 p-0">
+        <span role="img" aria-label="icon">&#8592;</span>&nbsp;
+        <NavLink className="link" to="/#blog">
+          Back to Home
+        </NavLink>
+        <span>&nbsp;|&nbsp;</span>
+        <Link className="link" to="/blogs">All Blogs</Link>
+      </div>
       { blogContent &&
         <div className={`${rootClass}__contentWrap`}>
           <h2 className="text-center mb-4">{blogContent.heading}</h2>

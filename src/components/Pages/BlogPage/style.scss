@@ -2,15 +2,13 @@
 
 .blogPage {
 
-  padding-top: 3rem;
+  padding: 3rem 0;
   background-color: $charcoal;
   color: $white;
   min-height: 100vh;
 
-  &__logo {
-    img {
-      width: 100%;
-    }
+  .link-wrapper {
+    margin: 1rem 0;
   }
 
 }

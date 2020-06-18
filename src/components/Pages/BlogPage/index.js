@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavHashLink as NavLink } from 'react-router-hash-link';
 import Card from '../BlogSection/Card';
 import './style.scss';
 
@@ -12,6 +12,12 @@ function BlogPage(props) {
     <section className={`${rootClass} col-12 mh-auto gutter-0`}>
       <h4 className="text-center">All Blogs</h4>
       <div className={`${rootClass}__wrapper row`}>
+        <div className="link-wrapper col-12">
+          <span role="img" aria-label="icon">&#8592;</span>&nbsp;
+          <NavLink className="link" to="/#blog">
+            Back to Home
+          </NavLink>
+        </div>
         {
           blogData.length && blogData
           .sort((a,b) => {

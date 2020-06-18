@@ -110,8 +110,10 @@ function Admin(props) {
       <h2>Edit Info</h2>
       { props.auth.isAuthenticated ?
           <div>
-            <p>
-              <Link to="/">Back to Home</Link> |
+            <div className="link-wrapper col-12 p-0">
+              <span role="img" aria-label="icon">&#8592;</span>&nbsp;
+              <Link className="link" to="/">Back to Home</Link>
+              <span>&nbsp;|&nbsp;</span>
               <button
                 onClick={() => {
                   props.auth.signout(() => history.push("/"));
@@ -120,7 +122,7 @@ function Admin(props) {
               >
                 Sign out
               </button>
-            </p>
+            </div>
             <p>Welcome, {props.userName}</p>
           </div>
           :
