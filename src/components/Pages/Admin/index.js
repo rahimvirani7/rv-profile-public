@@ -9,30 +9,28 @@ const rootClass = 'admin';
 function Admin(props) {
 
   let history = useHistory();
+  const [aboutText, setAboutText] = useState("");
+  const [showBlogForm, setShowBlogForm] = useState(false);
+  const [successAdded, setSuccessAdded] = useState(false);
+  const [editBlogMode, setEditBlogMode] = useState(false);
+  const [editBlogDOC_ID, setEditBlogDOC_ID] = useState("");
+  const [blogFormValues, setBlogFormValues] = useState({});
+  const db = firebaseApp.firestore();
 
   const { register, errors, handleSubmit } = useForm({
     mode: "onBlur"
   });
 
-  const showHideAddBlogForm = () => {
-    setAddNewBlog(!addNewBlog);
-    setSuccessAdded(false);
-  }
-
-  const {
-    register: register2,
-    errors: errors2,
-    handleSubmit: handleSubmit2,
-    reset: reset2
-  } = useForm({
+  const { register: register2, errors: errors2, handleSubmit: handleSubmit2, reset: reset2} = useForm({
     mode: "onBlur"
   });
 
-  const [aboutText, setAboutText] = useState("");
-  const [addNewBlog, setAddNewBlog] = useState(false);
-  const [successAdded, setSuccessAdded] = useState(false);
-
-  const db = firebaseApp.firestore();
+  const showHideAddBlogForm = () => {
+    showBlogForm ? setShowBlogForm(false) : setShowBlogForm(true);
+    setSuccessAdded(false);
+    setBlogFormValues({});
+    setEditBlogMode(false);
+  }
 
   // console.log("admin", props.blogData && props.blogData);
 
@@ -68,22 +66,44 @@ function Admin(props) {
   };
 
   const addBlog = (data) => {
-    let myData = data;
-    myData.dateAdded = new Date().toString();
+    if (editBlogMode) {
+      const firebaseBlogData = db.collection("blogs").doc(editBlogDOC_ID);
 
-    db.collection("blogs").add(myData)
-    .then(function(docRef) {
-      reset2();
-      setSuccessAdded(true);
-      props.setFetch(!props.fetch);
-    })
-    .catch(function(error) {
-        console.error("Error adding document: ", error);
-    });
+      firebaseBlogData.update(
+        data
+      ).then(() => {
+        props.setFetch(!props.fetch);
+      });
+    }
+    else {
+      let myData = data;
+      myData.dateAdded = new Date().toString();
+
+      db.collection("blogs").add(myData)
+      .then(function(docRef) {
+        reset2();
+        setSuccessAdded(true);
+        props.setFetch(!props.fetch);
+      })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+      });
+    }
+    //setEditBlogMode(false);
   }
 
   const handleAboutTextUpdate = e => {
     setAboutText(e.target.value);
+  }
+
+  const handleBlogFormValueUpdate = (e,field) => {
+    if (editBlogMode) {
+      let typedValue = e.target.value;
+      setBlogFormValues({
+        ...blogFormValues,
+        [field]: typedValue
+      });
+    }
   }
 
   React.useEffect(()=> {
@@ -102,6 +122,15 @@ function Admin(props) {
     }
 
     event.target.blur();
+  }
+
+  const editBlog = (event,id) => {
+    setEditBlogMode(true);
+    setShowBlogForm(true);
+    const selectedBlogItem = props.blogData.length && props.blogData.filter(item => String(item.doc_id) === id)[0];
+    //console.log("item",selectedBlogItem);
+    setBlogFormValues(selectedBlogItem);
+    setEditBlogDOC_ID(selectedBlogItem.doc_id);
   }
 
   return (
@@ -170,24 +199,32 @@ function Admin(props) {
                     }
                   className="delete">
                 </button>
-                <button className="edit">Edit</button>
+                <button
+                  onClick={(e)=>
+                    editBlog(e,blogItem.doc_id)
+                    } 
+                  className="edit">Edit</button>
               </div>
             ))
           }
           <div className="link-wrapper col-12 mt-4">
-            { !addNewBlog ?
+            { showBlogForm ?
               <button className="link" onClick={showHideAddBlogForm}>
-                &#43;&nbsp;Add new blog
+                Cancel
               </button>
               :
               <button className="link" onClick={showHideAddBlogForm}>
-              &#45;&nbsp;Hide add form
+                &#43;&nbsp;Add new blog
               </button>
             }
           </div>
-          { addNewBlog &&
+          { showBlogForm &&
             <form key={2} className="col-12 col-lg-10" id="blog-form" onSubmit={handleSubmit2(addBlog)}>
-              <br/><h4>New blog</h4>
+              <br/>
+              {
+                editBlogMode ? <h4>Edit blog</h4>
+                : <h4>New blog</h4>
+              }
               <div className={`${rootClass}__input-wrap`}>
                 <label htmlFor="txt_heading">
                   Blog Heading:
@@ -196,6 +233,8 @@ function Admin(props) {
                   className="col-12"
                   ref={register2({ required: true })}
                   name="heading" id="txt_heading"
+                  onChange={(event) => handleBlogFormValueUpdate(event, "heading")}
+                  value={blogFormValues.heading}
                   type="text" />
                 <div className="errors">
                   {errors2.heading && 'Heading cannot be blank.'}
@@ -209,6 +248,8 @@ function Admin(props) {
                 <textarea
                   ref={register2({ required: true })}
                   name="textContent" id="txt_textContent"
+                  onChange={(event) => handleBlogFormValueUpdate(event, "textContent")}
+                  value={blogFormValues.textContent}
                   rows="20" />
                 <div className="errors">
                   {errors2.textContent && 'Blog body text cannot be blank.'}
@@ -223,6 +264,8 @@ function Admin(props) {
                   className="col-8"
                   ref={register2({ required: true })}
                   name="category" id="txt_category"
+                  onChange={(event) => handleBlogFormValueUpdate(event, "category")}
+                  value={blogFormValues.category}
                   type="text" />
                 <div className="errors">
                   {errors2.category && 'Category cannot be blank.'}
@@ -237,10 +280,15 @@ function Admin(props) {
                   className="col-8"
                   ref={register2}
                   name="coverImg" id="txt_coverImg"
+                  onChange={(event) => handleBlogFormValueUpdate(event, "coverImg")}
+                  value={blogFormValues.coverImg}
                   type="text" />
               </div>
 
-              <button className={`${rootClass}__submit`}><span>Add!</span></button>
+              {
+                editBlogMode ? <button className={`${rootClass}__submit`}><span>Update</span></button>
+                : <button className={`${rootClass}__submit`}><span>Add!</span></button>
+              }
               { successAdded &&
                 <p className="success pt-2">New blog added!</p>
               }
