@@ -8,14 +8,14 @@ function Card(props) {
   let history = useHistory();
 
   return (
-    <div className={`${rootClass} col-12 col-sm-9 col-lg-4 mx-auto`}>
+    <div className={`${rootClass} ${props.styleClass} mx-auto`}>
       <button
         onClick={(e) => {
           history.push('/blog/' + props.blog.doc_id)
         }
         }
         className={`${rootClass}__infowrap`}>
-        <p>{props.blog.heading}</p>
+        <p className="ovflow-ellipses">{props.blog.heading}</p>
         <span className="date">{props.dateFormat(props.blog.dateAdded)}</span>
         <span
           className={

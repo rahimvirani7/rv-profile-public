@@ -30,6 +30,7 @@ function BlogPage(props) {
           }).reverse()
           .map((blogItem, index) => (
             <Card
+              styleClass={"col-12 col-sm-9 col-lg-6"}
               key={index}
               blog={blogItem}
               dateFormat={props.dateFormat}

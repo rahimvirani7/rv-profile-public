@@ -39,7 +39,7 @@ function BlogContent(props) {
       {links}
       { blogContent &&
         <div className={`${rootClass}__contentWrap`}>
-          <h2 className="text-center mb-4">{blogContent.heading}</h2>
+          <h2 className="mb-4">{blogContent.heading}</h2>
           { blogContent.coverImg &&
             <img src={blogContent.coverImg} alt="cover" />
           }

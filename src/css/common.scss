@@ -65,6 +65,19 @@
   color: $successText;
 }
 
+.ovflow-ellipses {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.ovflow-ellipses-multiline {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; // # of lines
+  -webkit-box-orient: vertical;
+}
+
 .shine {
   &:after {
     content: '';

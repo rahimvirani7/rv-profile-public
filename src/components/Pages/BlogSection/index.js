@@ -23,6 +23,7 @@ function BlogSection(props) {
           .map((blogItem, index) => (
           index < 3 &&
             <Card
+              styleClass={'col-12 col-sm-9 col-lg-4'}
               key={index}
               blog={blogItem}
               dateFormat={props.dateFormat}
