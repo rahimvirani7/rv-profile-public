@@ -18,6 +18,7 @@ import Skills from './components/Pages/Skills';
 import LoginPage from './components/Pages/Login';
 import googleAuthenticate from "./utils/firebase";
 import Contact from './components/Pages/Contact';
+import NotFound from './components/NotFound';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
   const [blogData, setBlogData] = useState({});
   const [aboutData, setAboutData] = useState({});
   const [skillData, setSkillData] = useState({});
+  const [adminList, setAdminList] = useState([]);
 
   React.useEffect(()=> {
     AOS.init({
@@ -62,6 +64,7 @@ function App() {
       const blogData = await db.collection('blogs').get();
       const aboutData = await db.collection('about').get();
       const skillsData = await db.collection('skills').get();
+      const adminData = await db.collection('admins').get();
 
       setBlogData(blogData.docs.map(record => {
         let data = record.data();
@@ -86,6 +89,12 @@ function App() {
         return data;
       })
       );
+
+      setAdminList(adminData.docs.map(record => {
+        let data = record.data();
+        return data.email;
+      })
+      );
     };
     fetchData();
 
@@ -102,15 +111,14 @@ function App() {
   const [session, setSession] = useState(sessionVar ? sessionVar : "");
   const loggedInUserInfo = session && JSON.parse(sessionStorage.getItem(session));
   const userName = loggedInUserInfo && loggedInUserInfo.displayName;
-  const validEmails = ["rahz616@gmail.com", "rahim.virani09@gmail.com", "noureen612@gmail.com"];
 
   const googleAuth = {
-    isAuthenticated: session && validEmails.includes(loggedInUserInfo.email) ? true : false,
+    isAuthenticated: session && adminList.includes(loggedInUserInfo.email) ? true : false,
     async authenticate(cb) {
       try {
         const userRes = await googleAuthenticate();
         setSession(Object.keys(sessionStorage).filter(item => item.indexOf("firebase:authUser") >= 0)[0]);
-        if (validEmails.includes(userRes.email)) {
+        if (adminList.includes(userRes.email)) {
           googleAuth.isAuthenticated = true;
           setTimeout(cb, 100);
         }
@@ -187,6 +195,7 @@ function App() {
                 session = {session}/>
             </Route>
 
+            { adminList.length &&
             <PrivateRoute exact path="/admin">
               <Admin
                 dateFormat = {formatDate}
@@ -197,6 +206,7 @@ function App() {
                 auth = {googleAuth}
                 userName = {userName} />
             </PrivateRoute>
+            }
             
             <Route exact path="/">
               <Splash
@@ -210,6 +220,12 @@ function App() {
                 dateFormat = {formatDate} />
               <Contact />
             </Route>
+
+            <Route path="*">
+              <NotFound
+                admins = {adminList} />
+            </Route>
+
           </Switch>
         </section>
         <Footer />
