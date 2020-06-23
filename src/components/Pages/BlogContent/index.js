@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useParams, useLocation } from "react-router-dom";
 import { NavHashLink as NavLink } from 'react-router-hash-link';
+import Loading from '../../Loading';
 // import 'prismjs/prism';
 // import 'prismjs/themes/prism-okaidia.css';
 import ReactHtmlParser from 'react-html-parser';
@@ -34,10 +35,9 @@ function BlogContent(props) {
   // console.log(blogContent);
 
   return (
-
+    blogContent ?
     <section id="blog" className={`${rootClass} col-12 mh-auto gutter-0`}>
       {links}
-      { blogContent &&
         <div className={`${rootClass}__contentWrap`}>
           <h2 className="mb-4">{blogContent.heading}</h2>
           { blogContent.coverImg &&
@@ -49,9 +49,9 @@ function BlogContent(props) {
           <br/>
           <span>Published on {props.dateFormat(blogContent.dateAdded)}</span>
         </div>
-      }
       {links}
     </section>
+    : <Loading />
   )
 }
 

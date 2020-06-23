@@ -4,7 +4,7 @@ import './style.scss';
 function Footer() {
   return (
     <div id="footer" className="col-12">
-      <p>&copy;&nbsp;Rahim Virani</p>
+      <p>&copy;&nbsp;2020,&nbsp;<b>Rahim Virani</b></p>
     </div>
   )
 }

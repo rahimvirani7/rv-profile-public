@@ -1,4 +1,5 @@
 import React from 'react';
+import Loading from '../Loading';
 import './style.scss';
 
 const rootClass = 'notFound';
@@ -16,9 +17,7 @@ function NotFound(props) {
       <h5>Please head over to <a className="link" href="/">home</a> and try again.</h5>
     </section>
     :
-    <section className={`loading col-12 mh-auto gutter-0`}>
-      <div className="loader"></div>
-    </section>
+    <Loading />
   )
 }
 

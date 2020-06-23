@@ -1,0 +1,37 @@
+@import '../../css/theme-variables.scss';
+
+.loading {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: $charcoal;
+
+  .loader {
+    border: 0.75rem solid $darkorange;
+    border-radius: 50%;
+    border-top: 0.75rem solid $white;
+    width: 6rem;
+    height: 6rem;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
