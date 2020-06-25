@@ -79,10 +79,10 @@ function App() {
         data.doc_id = item.id;
         return data;
         })
-        // .find(item => {
-        //   return item.active === true
-        // })
-        [0] // change index to change about text
+        .find(item => {
+          return item.active === true
+        })
+        //[0] // change index to change about text
       );
 
       setSkillData(skillsData.docs.map(skill => {
