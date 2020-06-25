@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
 import Card from '../BlogSection/Card';
+import {Helmet} from "react-helmet";
 import './style.scss';
 
 const rootClass = 'blogPage'
@@ -15,6 +16,10 @@ function BlogPage(props) {
   
   return (
     <section className={`${rootClass} col-12 mh-auto gutter-0`}>
+      <Helmet>
+        <title>Blogs | Rahim Virani</title>
+      </Helmet>
+
       <h4 className="text-center">All Blogs</h4>
       <div className={`${rootClass}__wrapper row`}>
         <div className="link-wrapper col-12">

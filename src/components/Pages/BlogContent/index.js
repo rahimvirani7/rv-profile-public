@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useParams, useLocation } from "react-router-dom";
 import { NavHashLink as NavLink } from 'react-router-hash-link';
 import Loading from '../../Loading';
+import {Helmet} from "react-helmet";
 // import 'prismjs/prism';
 // import 'prismjs/themes/prism-okaidia.css';
 import ReactHtmlParser from 'react-html-parser';
@@ -37,6 +38,11 @@ function BlogContent(props) {
   return (
     blogContent ?
     <section id="blog" className={`${rootClass} col-12 mh-auto gutter-0`}>
+      
+      <Helmet>
+        <title>{blogContent.heading}</title>
+      </Helmet>
+
       {links}
         <div className={`${rootClass}__contentWrap`}>
           <h2 className="mb-4">{blogContent.heading}</h2>

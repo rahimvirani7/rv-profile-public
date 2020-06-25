@@ -6,6 +6,7 @@ import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/common.scss';
 import smoothscroll from 'smoothscroll-polyfill';
+import {Helmet} from "react-helmet";
 // import Header from './components/Header';
 import Footer from './components/Footer';
 import Splash from './components/Pages/Splash';
@@ -81,7 +82,7 @@ function App() {
         // .find(item => {
         //   return item.active === true
         // })
-        [1] // change index to change about text
+        [0] // change index to change about text
       );
 
       setSkillData(skillsData.docs.map(skill => {
@@ -174,6 +175,14 @@ function App() {
   return (
     <Router>
       <div className="App">
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Profile | Rahim Virani</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+        <meta name="description" content="Professional profile for Rahim Virani" />
+      </Helmet>
+
         {/* <Header /> */}
         <section className="main-body col-12 col-xl-9 col-lg-10 col-sm-11 mh-auto">
           <Switch>
