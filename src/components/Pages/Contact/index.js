@@ -36,7 +36,7 @@ function Contact() {
         {
           details.length && details
           .map((item, index) => (
-          <div key={index} className={`${rootClass}__tile col-12 col-sm-9 col-md-6 mx-auto`}>
+          <div key={index} className={`${rootClass}__tile col-12 col-sm-9 col-md-6 mx-auto`} data-aos="fade-in">
             <p
               className={`${rootClass}__tile__tilewrap`}>
               <img src={`../images/icons/${item.icon}.png`} alt="icon" />

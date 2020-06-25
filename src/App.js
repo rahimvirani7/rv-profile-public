@@ -48,10 +48,10 @@ function App() {
 
   React.useEffect(()=> {
     AOS.init({
-      duration : 1500,
+      duration : 1800,
       once: true,
       offset: 100,
-      delay: 100
+      delay: 200
     });
 
     //--
@@ -78,9 +78,10 @@ function App() {
         data.doc_id = item.id;
         return data;
         })
-        .find(item => {
-          return item.active === true
-        })
+        // .find(item => {
+        //   return item.active === true
+        // })
+        [1] // change index to change about text
       );
 
       setSkillData(skillsData.docs.map(skill => {

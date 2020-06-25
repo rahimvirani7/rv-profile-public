@@ -20,7 +20,7 @@ function Skills(props) {
             return a.order - b.order;
           })
           .map((skill, index) => (
-          <div key={index} className={`${rootClass}__tile col-12 col-sm-9 col-md-6 col-xl-4 mx-auto`}>
+          <div key={index} className={`${rootClass}__tile col-12 col-sm-9 col-md-6 col-xl-4 mx-auto`} data-aos="fade-in">
             <p
               className={`${rootClass}__tile__skillwrap`}>
               <img src={`../images/icons/${skill.icon}.png`} alt="icon" />

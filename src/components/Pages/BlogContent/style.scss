@@ -23,6 +23,15 @@
       white-space: pre-line;
       font-weight: 300;
     }
+
+    a {
+      color: $lightyellow;
+      background-color: transparent;
+      border: 0;
+      &:hover {
+        color: $darkorange;
+      }
+    }
   }
 
 }

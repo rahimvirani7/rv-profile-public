@@ -8,7 +8,7 @@ function Card(props) {
   let history = useHistory();
 
   return (
-    <div className={`${rootClass} ${props.styleClass} mx-auto`}>
+    <div className={`${rootClass} ${props.styleClass} mx-auto`} data-aos="fade-in">
       <button
         onClick={(e) => {
           history.push('/blog/' + props.blog.doc_id)
