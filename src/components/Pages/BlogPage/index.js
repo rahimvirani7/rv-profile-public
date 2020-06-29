@@ -39,6 +39,7 @@ function BlogPage(props) {
               key={index}
               blog={blogItem}
               dateFormat={props.dateFormat}
+              analytics={props.analytics}
             />
           ))
         }

@@ -66,6 +66,7 @@ function Admin(props) {
   };
 
   const addBlog = (data) => {
+    //editing existing blog post
     if (editBlogMode) {
       const firebaseBlogData = db.collection("blogs").doc(editBlogDOC_ID);
 
@@ -75,9 +76,11 @@ function Admin(props) {
         props.setFetch(!props.fetch);
       });
     }
+    //adding new blog post
     else {
       let myData = data;
       myData.dateAdded = new Date().toString();
+      myData.active = Boolean(true);
 
       db.collection("blogs").add(myData)
       .then(function(docRef) {
@@ -112,7 +115,8 @@ function Admin(props) {
 
   const deleteBlog = (event,id) => {
     if (window.confirm('Are you sure you want to delete this blog?')) {
-      db.collection("blogs").doc(id).delete().then(() => {
+      // db.collection("blogs").doc(id).delete().then(() => {
+      db.collection("blogs").doc(id).update({active: false}).then(() => {
         // to refresh list of blogs after deletion
         props.setFetch(!props.fetch);
       })

@@ -11,6 +11,10 @@ function Card(props) {
     <div className={`${rootClass} ${props.styleClass} mx-auto`} data-aos="fade-in">
       <button
         onClick={(e) => {
+          props.analytics.logEvent(('blog_item_clicked'), {
+            blog_title: props.blog.heading,
+            blog_id: props.blog.doc_id
+          });
           history.push('/blog/' + props.blog.doc_id)
         }
         }

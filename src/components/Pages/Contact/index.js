@@ -4,7 +4,7 @@ import './style.scss';
 const rootClass = 'contact';
 
 
-function Contact() {
+function Contact(props) {
 
   const details = [
     { 
@@ -25,8 +25,7 @@ function Contact() {
     //   value: 'View PDF',
     //   url: 'https://firebasestorage.googleapis.com/v0/b/rahim-virani.appspot.com/o/assets%2Frahim_virani_SM.pdf?alt=media&token=2d68527e-8acc-4275-8ec2-7cb8acd3b021'
     // }
-  ]
-
+  ];
 
   return (
 
@@ -41,7 +40,14 @@ function Contact() {
               className={`${rootClass}__tile__tilewrap`}>
               <img src={`../images/icons/${item.icon}.png`} alt="icon" />
               <b>{item.label}</b>
-              <a rel="noopener noreferrer" target="_blank" href={item.url} className="" >
+              <a rel="noopener noreferrer"
+                onClick={()=> {
+                  props.analytics.logEvent(('contact_link_clicked'), {
+                    link_type: item.label,
+                  });
+                }}
+                target="_blank"
+                href={item.url} >
                 {item.value}
               </a>
             </p>

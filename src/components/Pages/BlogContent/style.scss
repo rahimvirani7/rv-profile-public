@@ -18,10 +18,14 @@
       color: $lightgray;
     }
 
-    p {
+    &__content {
       text-align: justify;
       white-space: pre-line;
       font-weight: 300;
+
+      h1, h2, h3, h4, h5 {
+        text-align: left;
+      }
     }
 
     a {

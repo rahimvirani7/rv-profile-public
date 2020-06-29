@@ -49,9 +49,9 @@ function BlogContent(props) {
           { blogContent.coverImg &&
             <img src={blogContent.coverImg} alt="cover" />
           }
-          <p>
+          <div className={`${rootClass}__contentWrap__content`}>
             {ReactHtmlParser(blogContent.textContent)}
-          </p>
+          </div>
           <br/>
           <span>Published on {props.dateFormat(blogContent.dateAdded)}</span>
         </div>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { firebaseApp } from './utils/firebase';
+import googleAuthenticate from "./utils/firebase";
+import firebase from 'firebase/app';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,7 +19,6 @@ import BlogContent from './components/Pages/BlogContent';
 import Admin from './components/Pages/Admin';
 import Skills from './components/Pages/Skills';
 import LoginPage from './components/Pages/Login';
-import googleAuthenticate from "./utils/firebase";
 import Contact from './components/Pages/Contact';
 import NotFound from './components/NotFound';
 
@@ -47,6 +48,8 @@ function App() {
   const [skillData, setSkillData] = useState({});
   const [adminList, setAdminList] = useState([]);
 
+  const analytics = firebase.analytics();
+
   React.useEffect(()=> {
     AOS.init({
       duration : 1800,
@@ -71,6 +74,9 @@ function App() {
         let data = record.data();
         data.doc_id = record.id;
         return data;
+      })
+      .filter(item => {
+        return item.active === true
       })
       );
 
@@ -179,7 +185,7 @@ function App() {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Profile | Rahim Virani</title>
-        <link rel="canonical" href="http://mysite.com/example" />
+        <link rel="canonical" href="https://rahim-virani.web.app" />
         <meta name="description" content="Professional profile for Rahim Virani" />
       </Helmet>
 
@@ -196,6 +202,7 @@ function App() {
             <Route exact path="/blogs">
               <BlogPage
                 data = {blogData}
+                analytics={analytics}
                 dateFormat = {formatDate} />
             </Route>
 
@@ -227,8 +234,10 @@ function App() {
                 skills = {skillData} />
               <BlogSection
                 data = {blogData}
+                analytics={analytics}
                 dateFormat = {formatDate} />
-              <Contact />
+              <Contact
+                analytics={analytics} />
             </Route>
 
             <Route path="*">
