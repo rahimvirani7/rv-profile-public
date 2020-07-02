@@ -11,10 +11,19 @@
   color: $white;
 
   &__img-profile {
+    -webkit-mask-image: url(/images/icons/mask-shape.png);
+    mask-image: url(/images/icons/mask-shape.png);
+    padding: 0;
+    display: block;
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
 
     img {
       width: 100%;
-      border-radius: 50%;
     }
   }
 
