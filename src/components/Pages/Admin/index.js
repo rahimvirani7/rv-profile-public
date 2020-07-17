@@ -9,7 +9,7 @@ const rootClass = 'admin';
 function Admin(props) {
 
   let history = useHistory();
-  const [aboutText, setAboutText] = useState("");
+  const [aboutText, setAboutText] = useState(props.aboutData.text);
   const [showBlogForm, setShowBlogForm] = useState(false);
   const [successAdded, setSuccessAdded] = useState(false);
   const [editBlogMode, setEditBlogMode] = useState(false);
@@ -40,7 +40,7 @@ function Admin(props) {
 
     firebaseAboutData.update(
       {
-        text : aboutText
+        text : data.about
       }
     ).then(() => {
       props.setFetch(!props.fetch);
@@ -109,9 +109,9 @@ function Admin(props) {
     }
   }
 
-  React.useEffect(()=> {
-    setAboutText(props.aboutData && props.aboutData.text);
-  },[props]);
+  // React.useEffect(()=> {
+  //   setAboutText(props.aboutData && props.aboutData.text);
+  // },[props]);
 
   const deleteBlog = (event,id) => {
     if (window.confirm('Are you sure you want to delete this blog?')) {
