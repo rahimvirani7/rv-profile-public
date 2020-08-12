@@ -11,6 +11,9 @@
     img {
       width: 100%;
       margin-bottom: 1rem;
+      object-fit: cover;
+      max-height: 600px;
+      object-position: 100% 10%;
     }
 
     span {
